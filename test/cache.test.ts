@@ -64,3 +64,15 @@ test("cache keys", () => {
     cache.put(1, 1);
     expect([...cache.keys()]).toEqual([1]);
 });
+
+test("cache iterate", () => {
+    type Entry = [number, number];
+    const cache = new LruCache<number, number>(3);
+    cache.put(1, 1);
+    cache.put(2, 2);
+    cache.put(3, 3);
+    const entries: Array<Entry> = [];
+    for (const entry of cache) {
+        entries.push(entry);
+    }
+})
