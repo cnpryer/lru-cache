@@ -11,12 +11,12 @@ class LruCache<K, V> {
         this.#cache = new Map<K, V>();
     }
 
-    get(key: K): V | -1 {
+    get(key: K): V | undefined {
         if (this.#cache.has(key)) {
             const value = this.#cache.get(key);
 
             if (value === undefined) {
-                return -1;
+                return undefined;
             }
 
             this.#cache.delete(key);
@@ -25,7 +25,7 @@ class LruCache<K, V> {
             return value;
         }
 
-        return -1;
+        return undefined;
     }
 
     put(key: K, value: V): void {
