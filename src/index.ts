@@ -124,9 +124,9 @@ class LruCache<K, V> {
         return this.#capacity;
     }
 
-    /* Return a generator yielding `[key, value]` entries.
+    /* Return an iterable yielding `[key, value]` entries.
      *
-     * @returns {Generator<[K, V]>} The entries of the cache.
+     * @returns {Iterable<[K, V]>} The entries of the cache.
      *
      * ```js
      * const cache = new LruCache(3);
