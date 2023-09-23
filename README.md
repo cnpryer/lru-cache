@@ -1,3 +1,3 @@
-# ripe
+# lru-cache
 
-An LRUCache for JavaScript.
+An LRU Cache for JavaScript.

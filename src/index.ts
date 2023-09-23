@@ -1,7 +1,3 @@
-/*
- * Ripe: An LRUCache for JavaScript.
- */
-
 /* An `LruCache` for JavaScript.
  *
  * ```js
