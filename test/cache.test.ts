@@ -58,3 +58,9 @@ test("cache contains", () => {
     cache.put(1, 1);
     expect(cache.contains(1)).toBe(true);
 });
+
+test("cache keys", () => {
+    const cache = new LruCache(3);
+    cache.put(1, 1);
+    expect([...cache.keys()]).toEqual([1]);
+});

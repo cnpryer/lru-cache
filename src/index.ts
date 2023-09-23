@@ -74,7 +74,7 @@ class LruCache<K, V> {
         if (this.contains(key)) {
             this.#cache.delete(key);
         } else if (this.size() >= this.#capacity) {
-            const key = this.#cache.keys().next().value;
+            const key = this.keys().next().value;
 
             if (key !== undefined) {
                 this.#cache.delete(key);
@@ -126,7 +126,7 @@ class LruCache<K, V> {
 
     /* Return an iterable yielding `[key, value]` entries.
      *
-     * @returns {Iterable<[K, V]>} The entries of the cache.
+     * @returns {IterableIterator<[K, V]>} The entries of the cache.
      *
      * ```js
      * const cache = new LruCache(3);
@@ -136,7 +136,7 @@ class LruCache<K, V> {
      *
      * TODO(cnpryer): Implement *entries generator.
      */
-    entries(): Iterable<[K, V]> {
+    entries(): IterableIterator<[K, V]> {
         return this.#cache.entries();
     }
 
@@ -153,6 +153,20 @@ class LruCache<K, V> {
      */
     contains(key: K): boolean {
         return this.#cache.has(key);
+    }
+
+    /* Returns and iterator over the cache's keys.
+     *
+     * @returns {IterableIterator<K>} An iterator over the keys in the cache.
+     *
+     * ```js
+     * const cache = new LruCache(3);
+     * cache.put(1, 1);
+     * expect([...cache.keys()]).toEqual([1]);
+     * ```
+     */
+    keys(): IterableIterator<K> {
+        return this.#cache.keys();
     }
 }
 
