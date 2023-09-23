@@ -32,6 +32,10 @@ class LRUCache {
 	size() {
 		return this.capacity;
 	}
+
+	clear() {
+		this.cache.clear();
+	}
 }
 
 module.exports = LRUCache;
