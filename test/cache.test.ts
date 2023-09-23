@@ -71,9 +71,13 @@ test("cache iterate", () => {
     cache.put(1, 1);
     cache.put(2, 2);
     cache.put(3, 3);
-    const entries: Array<Entry> = [];
+    const entries: Entry[] = [];
     for (const entry of cache) {
         entries.push(entry);
     }
-    expect(entries).toEqual([[1,1], [2,2], [3,3]]);
-})
+    expect(entries).toEqual([
+        [1, 1],
+        [2, 2],
+        [3, 3],
+    ]);
+});
