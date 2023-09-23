@@ -2,13 +2,16 @@
  * Ripe: An LRUCache for JavaScript.
  */
 
-class LRUCache {
-    constructor(capacity) {
+class LRUCache<K, V> {
+    private capacity: number;
+    private cache: Map<K, V>;
+
+    constructor(capacity: number) {
         this.capacity = capacity;
-        this.cache = new Map();
+        this.cache = new Map<K, V>();
     }
 
-    get(key) {
+    get(key: K): V | -1 {
         if (this.cache.has(key)) {
             const value = this.cache.get(key);
             this.cache.delete(key);
@@ -19,22 +22,24 @@ class LRUCache {
         return -1;
     }
 
-    put(key, value) {
+    put(key: K, value: V): void {
         if (this.cache.has(key)) {
             this.cache.delete(key);
         } else if (this.cache.size >= this.capacity) {
-            const key = this.cache.keys().next().value;
-            this.cache.delete(key);
+            const firstKey = this.cache.keys().next().value;
+            if (firstKey !== undefined) {
+                this.cache.delete(firstKey);
+            }
         }
 
         this.cache.set(key, value);
     }
 
-    size() {
-        return this.capacity;
+    size(): number {
+        return this.cache.size;
     }
 
-    clear() {
+    clear(): void {
         this.cache.clear();
     }
 }
