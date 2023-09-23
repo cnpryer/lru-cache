@@ -3,24 +3,24 @@
  */
 
 class LRUCache<K, V> {
-    private capacity: number;
-    private cache: Map<K, V>;
+    private _capacity: number;
+    private _cache: Map<K, V>;
 
     constructor(capacity: number) {
-        this.capacity = capacity;
-        this.cache = new Map<K, V>();
+        this._capacity = capacity;
+        this._cache = new Map<K, V>();
     }
 
     get(key: K): V | -1 {
-        if (this.cache.has(key)) {
-            const value = this.cache.get(key);
+        if (this._cache.has(key)) {
+            const value = this._cache.get(key);
 
             if (value === undefined) {
                 return -1;
             }
 
-            this.cache.delete(key);
-            this.cache.set(key, value);
+            this._cache.delete(key);
+            this._cache.set(key, value);
 
             return value;
         }
@@ -29,25 +29,29 @@ class LRUCache<K, V> {
     }
 
     put(key: K, value: V): void {
-        if (this.cache.has(key)) {
-            this.cache.delete(key);
-        } else if (this.cache.size >= this.capacity) {
-            const key = this.cache.keys().next().value;
+        if (this._cache.has(key)) {
+            this._cache.delete(key);
+        } else if (this._cache.size >= this._capacity) {
+            const key = this._cache.keys().next().value;
 
             if (key !== undefined) {
-                this.cache.delete(key);
+                this._cache.delete(key);
             }
         }
 
-        this.cache.set(key, value);
+        this._cache.set(key, value);
     }
 
     size(): number {
-        return this.cache.size;
+        return this._cache.size;
     }
 
     clear(): void {
-        this.cache.clear();
+        this._cache.clear();
+    }
+
+    capacity(): number {
+        return this._capacity;
     }
 }
 
