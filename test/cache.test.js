@@ -1,21 +1,22 @@
-const LRUCache = require("../src/index");
+import { test, expect } from "@jest/globals";
+const lruCache = require("../src/index");
 
 test("cache put", () => {
-    const cache = new LRUCache(3);
+    const cache = new lruCache(3);
     cache.put(1, 1);
     expect(cache.get(1)).toBe(1);
     expect(cache.get(0)).toBe(-1);
 });
 
 test("cache get", () => {
-    const cache = new LRUCache(3);
+    const cache = new lruCache(3);
     cache.put(1, 1);
     expect(cache.get(1)).toBe(1);
     expect(cache.get(0)).toBe(-1);
 });
 
 test("cache size", () => {
-    const cache = new LRUCache(3);
+    const cache = new lruCache(3);
     cache.put(1, 1);
     cache.put(2, 2);
     cache.put(3, 3);
@@ -23,7 +24,7 @@ test("cache size", () => {
 });
 
 test("cache clear", () => {
-    const cache = new LRUCache(3);
+    const cache = new lruCache(3);
     cache.put(1, 1);
     cache.put(2, 2);
     cache.put(3, 3);
@@ -34,7 +35,7 @@ test("cache clear", () => {
 });
 
 test("cache capacity", () => {
-    const cache = new LRUCache(3);
+    const cache = new lruCache(3);
     cache.put(1, 1);
     cache.put(2, 2);
     cache.put(3, 3);
