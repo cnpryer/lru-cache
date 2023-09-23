@@ -54,4 +54,5 @@ jobs:
         - uses: oven-sh/setup-bun@v1
         - run: |
             bun install
+            bun run tsc
             bun run test -- --ci
