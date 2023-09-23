@@ -46,7 +46,7 @@ class LruCache<K, V> {
      * ```
      */
     get(key: K): V | undefined {
-        if (this.#cache.has(key)) {
+        if (this.contains(key)) {
             const value = this.#cache.get(key);
 
             if (value === undefined) {
@@ -75,9 +75,9 @@ class LruCache<K, V> {
      * ```
      */
     put(key: K, value: V): void {
-        if (this.#cache.has(key)) {
+        if (this.contains(key)) {
             this.#cache.delete(key);
-        } else if (this.#cache.size >= this.#capacity) {
+        } else if (this.size() >= this.#capacity) {
             const key = this.#cache.keys().next().value;
 
             if (key !== undefined) {
@@ -126,6 +126,25 @@ class LruCache<K, V> {
      */
     get capacity(): number {
         return this.#capacity;
+    }
+
+    /* Return a generator yielding `[key, value]` entries.
+     *
+     * @returns {Generator<[K, V]>} The entries of the cache.
+     */
+    // TODO(cnpryer)
+    // *entries(): Generator<[K, V | undefined], void, void>  {
+    //     for (const key in this.#cache.keys()) {
+    //         yield [key as K, this.get(key as K)]
+    //     }
+    // }
+
+    /* Returns true if the cache contains the key.
+     *
+     * @returns {boolean} Boolean indicating if the cache contains an entry associated with a key.
+     */
+    contains(key: K): boolean {
+        return this.#cache.has(key);
     }
 }
 
