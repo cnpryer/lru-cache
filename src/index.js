@@ -1,6 +1,8 @@
 /*
  * Ripe: An LRUCache for JavaScript.
  */
+
+
 class LRUCache {
 	constructor(capacity) {
 		this.capacity = capacity;
