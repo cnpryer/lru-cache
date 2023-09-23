@@ -2,7 +2,7 @@
  * Ripe: An LRUCache for JavaScript.
  */
 
-class LRUCache<K, V> {
+class LruCache<K, V> {
     private _capacity: number;
     private _cache: Map<K, V>;
 
@@ -55,4 +55,4 @@ class LRUCache<K, V> {
     }
 }
 
-module.exports = LRUCache;
+module.exports = LruCache;
