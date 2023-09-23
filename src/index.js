@@ -28,6 +28,10 @@ class LRUCache {
 
 		this.cache.set(key, value);
 	}
+
+	size() {
+		return this.capacity;
+	}
 }
 
 module.exports = LRUCache;
