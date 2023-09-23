@@ -29,3 +29,15 @@ test("cache clear", () => {
 	expect(cache.get(2)).toBe(-1);
 	expect(cache.get(3)).toBe(-1);
 });
+
+test("cache capacity", () => {
+	const cache = new LRUCache(3);
+	cache.put(1, 1);
+	cache.put(2, 2);
+	cache.put(3, 3);
+	expect(cache.get(1)).toBe(1);
+	expect(cache.get(2)).toBe(2);
+	expect(cache.get(3)).toBe(3);
+	cache.put(4, 4);
+	expect(cache.get(1)).toBe(-1);
+});
