@@ -170,4 +170,4 @@ class LruCache<K, V> {
     }
 }
 
-module.exports = LruCache;
+export { LruCache };

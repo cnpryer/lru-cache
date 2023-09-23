@@ -1,5 +1,6 @@
 import { expect, test } from "@jest/globals";
-const LruCache = require("../src/index");
+// biome-ignore lint/nursery/useImportRestrictions: <explanation>
+import { LruCache } from "../src/index";
 
 test("cache put", () => {
     const cache = new LruCache(3);

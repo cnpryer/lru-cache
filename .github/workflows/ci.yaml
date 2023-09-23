@@ -21,7 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
-      - run: bunx biome format .
+      - run: |
+            bun install
+            bun run format-check
 
   lint:
       name: Lint
@@ -29,7 +31,9 @@ jobs:
       steps:
         - uses: actions/checkout@v4
         - uses: oven-sh/setup-bun@v1
-        - run: bunx biome lint .
+        - run: |
+            bun install
+            bun run lint
 
   # TODO(cnpryer)
   check:
@@ -38,7 +42,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
-      - run: bunx biome check .
+      - run: |
+            bun install
+            bun run check
 
   test:
       name: Test
