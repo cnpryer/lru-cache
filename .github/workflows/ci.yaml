@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows/ci.yaml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows/ci.yaml'
+
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@latest
+      - uses: oven-sh/setup-bun@latest
+      - run: bunx biome format .
+
+  lint:
+      name: Lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@latest
+        - uses: oven-sh/setup-bun@latest
+        - run: bunx biome lint .
+
+  test:
+      name: Test
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@latest
+        - uses: oven-sh/setup-bun@latest
+        - run: |
+          bun install
+          bun run test
