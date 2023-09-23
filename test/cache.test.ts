@@ -1,4 +1,4 @@
-import { test, expect } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 const LruCache = require("../src/index");
 
 test("cache put", () => {
