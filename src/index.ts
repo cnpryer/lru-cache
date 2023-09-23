@@ -30,6 +30,25 @@ class LruCache<K, V> {
         this.#cache = new Map<K, V>();
     }
 
+    /* Iterate over `LruCache` entries.
+     *
+     * ```js
+     * type Entry = [number, number];
+     * const cache = new LruCache<number, number>(3);
+     * cache.put(1, 1);
+     * cache.put(2, 2);
+     * cache.put(3, 3);
+     * const entries: Array<Entry> = [];
+     * for (const entry of cache) {
+     *   entries.push(entry);
+     * }
+     * expect(entries).toEqual([[1,1], [2,2], [3,3]]);
+     * ```
+     */
+    [Symbol.iterator]() {
+        return this.entries();
+    }
+
     /* Returns a value from the cache.
      *
      * @param {K} key A key used for a cache entry.
