@@ -127,17 +127,29 @@ class LruCache<K, V> {
     /* Return a generator yielding `[key, value]` entries.
      *
      * @returns {Generator<[K, V]>} The entries of the cache.
+     *
+     * ```js
+     * const cache = new LruCache(3);
+     * cache.put(1, 1);
+     * expect([...cache.entries()]).toEqual([[1, 1]]);
+     * ```
+     *
+     * TODO(cnpryer): Implement *entries generator.
      */
-    // TODO(cnpryer)
-    // *entries(): Generator<[K, V | undefined], void, void>  {
-    //     for (const key in this.#cache.keys()) {
-    //         yield [key as K, this.get(key as K)]
-    //     }
-    // }
+    entries(): Iterable<[K, V]> {
+        return this.#cache.entries();
+    }
 
     /* Returns true if the cache contains the key.
      *
      * @returns {boolean} Boolean indicating if the cache contains an entry associated with a key.
+     *
+     * ```js
+     * const cache = new LruCache(3);
+     * expect(cache.contains(1)).toBe(false);
+     * cache.put(1, 1);
+     * expect(cache.contains(1)).toBe(true);
+     * ```
      */
     contains(key: K): boolean {
         return this.#cache.has(key);

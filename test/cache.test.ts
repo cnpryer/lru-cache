@@ -46,12 +46,11 @@ test("cache capacity", () => {
     expect(cache.get(1)).toBe(undefined);
 });
 
-// TODO(cnpryer)
-// test("cache entries", () => {
-//     const cache = new LruCache(3);
-//     cache.put(1, 1);
-//     expect([...cache.entries()]).toBe([[1, 1]]);
-// });
+test("cache entries", () => {
+    const cache = new LruCache(3);
+    cache.put(1, 1);
+    expect([...cache.entries()]).toEqual([[1, 1]]);
+});
 
 test("cache contains", () => {
     const cache = new LruCache(3);
