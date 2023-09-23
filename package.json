@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "format": "biome format . --write",
+    "lint": "biome lint ."
   },
   "devDependencies": {
     "jest": "^29.7.0"
